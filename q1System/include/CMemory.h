@@ -1,6 +1,6 @@
 /*
- * File: entry.cpp
- * Location: /
+ * File: CMemory.h
+ * Location: include/
  * Author: Qu1oX
  *
  * This file is part of {{ q1System }}.
@@ -23,10 +23,20 @@
  * SOFTWARE.
  */
 
-/**
- * Entry point of the program. Just to show some features of the lib
- */
-int main()
+#ifndef __C_MEMORY_H__
+#define __C_MEMORY_H__
+
+#include <windows.h>
+
+namespace q1
 {
-	return 0;
+	class CMemory
+	{
+	public:
+		void test();
+	private:
+
+	};
 }
+
+#endif

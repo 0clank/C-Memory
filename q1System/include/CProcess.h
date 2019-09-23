@@ -1,6 +1,6 @@
 /*
- * File: entry.cpp
- * Location: /
+ * File: CPrcoess.h
+ * Location: include/
  * Author: Qu1oX
  *
  * This file is part of {{ q1System }}.
@@ -23,10 +23,12 @@
  * SOFTWARE.
  */
 
-/**
- * Entry point of the program. Just to show some features of the lib
- */
-int main()
+#ifndef __C_MODULE_H__
+#define __C_MODULE_H__
+
+namespace q1
 {
-	return 0;
+	
 }
+
+#endif

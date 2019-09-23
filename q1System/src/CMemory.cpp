@@ -1,6 +1,6 @@
 /*
- * File: entry.cpp
- * Location: /
+ * File: CMemory.cpp
+ * Location: src/
  * Author: Qu1oX
  *
  * This file is part of {{ q1System }}.
@@ -23,10 +23,11 @@
  * SOFTWARE.
  */
 
-/**
- * Entry point of the program. Just to show some features of the lib
- */
-int main()
+#include <iostream>
+
+#include "../include/CMemory.h"
+
+void q1::CMemory::test()
 {
-	return 0;
+	std::cout << "test";
 }

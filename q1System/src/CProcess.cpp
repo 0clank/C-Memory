@@ -1,6 +1,6 @@
 /*
- * File: entry.cpp
- * Location: /
+ * File: CProcess.cpp
+ * Location: src/
  * Author: Qu1oX
  *
  * This file is part of {{ q1System }}.
@@ -23,10 +23,4 @@
  * SOFTWARE.
  */
 
-/**
- * Entry point of the program. Just to show some features of the lib
- */
-int main()
-{
-	return 0;
-}
+#include "../include/CProcess.h"
