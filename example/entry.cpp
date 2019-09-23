@@ -23,10 +23,17 @@
  * SOFTWARE.
  */
 
+#include <iostream>
+#include <CProcess.h>
+
+#pragma comment(lib, "q1System")
+
 /**
  * Entry point of the program. Just to show some features of the lib
  */
 int main()
 {
+	std::cout << q1::CProcess::findProcessId(L"Agent.exe");
+
 	return 0;
 }

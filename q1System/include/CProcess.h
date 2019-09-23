@@ -1,5 +1,5 @@
 /*
- * File: CPrcoess.h
+ * File: CProcess.h
  * Location: include/
  * Author: Qu1oX
  *
@@ -23,12 +23,65 @@
  * SOFTWARE.
  */
 
-#ifndef __C_MODULE_H__
-#define __C_MODULE_H__
+#ifndef __C_PROCESS_H__
+#define __C_PROCESS_H__
+
+#include <string>
+#include <windows.h>
+#include <tlhelp32.h>
 
 namespace q1
 {
-	
+	/**
+	 * Handles the everything related to a Process <br>
+	 * 
+	 * @Author Qu1oX
+	 * @since 1.0
+	 * @version 1.0
+	 */
+	class CProcess
+	{
+	public:
+		/**
+		 * Creates an instance of CProcess <br>
+		 * And searches it's id.
+		 * @param processName WideString with a process in it. <br> 
+		 *		Should be in the format "process.exe"
+		 */
+		CProcess(const std::wstring& processName);
+
+		/**
+		 * Getter of the process name
+		 * @returns The current process name as a wide string
+		 */
+		std::wstring&	processName();
+
+		/**
+		 * Getter of the process id
+		 * @returns The current process id of the process name
+		 */
+		DWORD&			processId();
+
+		/**
+		 * Checks if the process was found
+		 * @returns true if the process id is not 0 otherwise false
+		 */
+		bool			hasFound();
+
+		/**
+		 * Searches for the process id of the process given to the method. 
+		 * @param processName WideString with a process in it. <br> 
+		 *		Should be in the format "process.exe"
+		 *	@returns The process id if process was found otherwise 0
+		 */
+		static DWORD findProcessId(const std::wstring& processName);
+
+	private:
+		/** Process name */
+		std::wstring	m_ProcessName;
+		/** Process id */
+		DWORD			m_dwProcessId;
+	};
 }
 
 #endif
