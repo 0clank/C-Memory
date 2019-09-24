@@ -42,6 +42,37 @@ namespace q1
 	class CModule
 	{
 	public:
+		/**
+		 * Creates an instance of CModule
+		 * 
+		 * @param dwProcessId Process id to search in
+		 * @param szModuleName Module to search
+		 */
+		CModule(DWORD dwProcessId, const char* szModuleName);
+
+		/**
+		 * Getter of m_dwProcessId
+		 * @returns The current value of m_dwProcessId
+		 */
+		DWORD processId();
+
+		/**
+		 * Getter of m_szModuleName
+		 * @returns The current value of m_szModuleName
+		 */
+		const char* moduleName();
+
+		/**
+		 * Getter of m_uintModulePointer
+		 * @returns The current value of m_uintModulePointer
+		 */
+		uintptr_t modulePointer();
+
+		/**
+		 * Checks if the module was found or not
+		 * @returns true if m_uintModulePointer is not 0 otherwise false
+		 */
+		bool hasFound();
 
 		/**
 		 * Find the pointer to a module <br>
@@ -55,6 +86,14 @@ namespace q1
 		static uintptr_t findModulePtr(DWORD dwProcessId, const char* szModuleName);
 	private:
 
+		/** process id */
+		DWORD		m_dwProcessId;
+
+		/** module name */
+		const char* m_szModuleName;
+
+		/** module pointer */
+		uintptr_t	m_uintModulePointer;
 	};
 }
 

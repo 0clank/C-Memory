@@ -27,6 +27,33 @@
 
 #include <comdef.h>
 
+q1::CModule::CModule(DWORD dwProcessId, const char* szModuleName)
+{
+	m_dwProcessId = dwProcessId;
+	m_szModuleName = szModuleName;
+	m_uintModulePointer = CModule::findModulePtr(dwProcessId, szModuleName);
+}
+
+DWORD q1::CModule::processId()
+{
+	return m_dwProcessId;
+}
+
+const char* q1::CModule::moduleName()
+{
+	return m_szModuleName;
+}
+
+uintptr_t q1::CModule::modulePointer()
+{
+	return m_uintModulePointer;
+}
+
+bool q1::CModule::hasFound()
+{
+	return m_uintModulePointer != 0;
+}
+
 uintptr_t q1::CModule::findModulePtr(DWORD dwProcessId, const char* szModuleName)
 {
 	uintptr_t ModuleBaseAddress = 0;
