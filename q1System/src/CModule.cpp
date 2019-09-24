@@ -24,3 +24,31 @@
  */
 
 #include "../include/CModule.h"
+
+#include <comdef.h>
+
+uintptr_t q1::CModule::findModulePtr(DWORD dwProcessId, const char* szModuleName)
+{
+	uintptr_t ModuleBaseAddress = 0;
+	HANDLE hProcessesSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, dwProcessId);
+	if (hProcessesSnapshot != INVALID_HANDLE_VALUE)
+	{
+		MODULEENTRY32 ModuleEntry32;
+		ModuleEntry32.dwSize = sizeof(MODULEENTRY32);
+		if (Module32First(hProcessesSnapshot, &ModuleEntry32))
+		{
+			do
+			{
+				_bstr_t bStr(ModuleEntry32.szModule);
+
+				if (strcmp(bStr, szModuleName) == 0)
+				{
+					ModuleBaseAddress = reinterpret_cast<uintptr_t>(ModuleEntry32.modBaseAddr);
+					break;
+				}
+			} while (Module32Next(hProcessesSnapshot, &ModuleEntry32));
+		}
+		CloseHandle(hProcessesSnapshot);
+	}
+	return ModuleBaseAddress;
+}

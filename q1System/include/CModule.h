@@ -26,9 +26,36 @@
 #ifndef __C_MODULE_H__
 #define __C_MODULE_H__
 
+#include <windows.h>
+#include <cstdint>
+#include <tlhelp32.h>
+
 namespace q1
 {
-	
+	/**
+	 * Handles the modules inside a CProcess
+	 * 
+	 * @Author Qu1oX
+	 * @since 1.0
+	 * @version 1.0
+	 */
+	class CModule
+	{
+	public:
+
+		/**
+		 * Find the pointer to a module <br>
+		 * Should be in the format: "module.dll"
+		 * 
+		 * @param dwProcessId Process id to search in
+		 * @param szModuleName Module to search
+		 * 
+		 * @returns The pointer to the module as uintptr_t
+		 */
+		static uintptr_t findModulePtr(DWORD dwProcessId, const char* szModuleName);
+	private:
+
+	};
 }
 
 #endif

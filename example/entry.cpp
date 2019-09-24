@@ -25,6 +25,7 @@
 
 #include <iostream>
 #include <CProcess.h>
+#include <CModule.h>
 
 #pragma comment(lib, "q1System")
 
@@ -33,7 +34,8 @@
  */
 int main()
 {
-	std::cout << q1::CProcess::findProcessId(L"Agent.exe");
+	std::cout << q1::CProcess::findProcessId(L"csgo.exe") << std::endl;
+	std::cout << q1::CModule::findModulePtr(q1::CProcess::findProcessId(L"csgo.exe"), "client_panorama.dll") << std::endl;
 
 	return 0;
 }
