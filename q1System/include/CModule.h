@@ -84,6 +84,7 @@ namespace q1
 		 * @returns The pointer to the module as uintptr_t
 		 */
 		static uintptr_t findModulePtr(DWORD dwProcessId, const char* szModuleName);
+
 	private:
 
 		/** process id */

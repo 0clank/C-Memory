@@ -77,8 +77,10 @@ namespace q1
 		static DWORD findProcessId(const std::wstring& strProcessName);
 
 	private:
+
 		/** Process name */
 		std::wstring	m_wstrProcessName;
+
 		/** Process id */
 		DWORD			m_dwProcessId;
 	};
