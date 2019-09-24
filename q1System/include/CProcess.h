@@ -44,7 +44,7 @@ namespace q1
 	public:
 		/**
 		 * Creates an instance of CProcess <br>
-		 * And searches it's id.
+		 * And searches the id of the process
 		 * @param processName WideString with a process in it. <br> 
 		 *		Should be in the format "process.exe"
 		 */
@@ -74,11 +74,11 @@ namespace q1
 		 *		Should be in the format "process.exe"
 		 *	@returns The process id if process was found otherwise 0
 		 */
-		static DWORD findProcessId(const std::wstring& processName);
+		static DWORD findProcessId(const std::wstring& strProcessName);
 
 	private:
 		/** Process name */
-		std::wstring	m_ProcessName;
+		std::wstring	m_wstrProcessName;
 		/** Process id */
 		DWORD			m_dwProcessId;
 	};
