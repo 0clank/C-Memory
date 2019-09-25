@@ -27,7 +27,7 @@
 
 #include <comdef.h>
 
-q1::CModule::CModule(DWORD dwProcessId, const char* szModuleName)
+q1::CModule::CModule(DWORD dwProcessId, const wchar_t* szModuleName)
 {
 	m_dwProcessId = dwProcessId;
 	m_szModuleName = szModuleName;
@@ -39,7 +39,7 @@ DWORD q1::CModule::processId()
 	return m_dwProcessId;
 }
 
-const char* q1::CModule::moduleName()
+const wchar_t* q1::CModule::moduleName()
 {
 	return m_szModuleName;
 }
@@ -54,7 +54,7 @@ bool q1::CModule::hasFound()
 	return m_uintModulePointer != 0;
 }
 
-uintptr_t q1::CModule::findModulePtr(DWORD dwProcessId, const char* szModuleName)
+uintptr_t q1::CModule::findModulePtr(DWORD dwProcessId, const wchar_t* szModuleName)
 {
 	uintptr_t ModuleBaseAddress = 0;
 	HANDLE hProcessesSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, dwProcessId);
@@ -66,16 +66,14 @@ uintptr_t q1::CModule::findModulePtr(DWORD dwProcessId, const char* szModuleName
 		{
 			do
 			{
-				_bstr_t bStr(ModuleEntry32.szModule);
-
-				if (strcmp(bStr, szModuleName) == 0)
+				if (!_wcsicmp(ModuleEntry32.szModule, szModuleName))
 				{
 					ModuleBaseAddress = reinterpret_cast<uintptr_t>(ModuleEntry32.modBaseAddr);
 					break;
 				}
 			} while (Module32Next(hProcessesSnapshot, &ModuleEntry32));
 		}
-		CloseHandle(hProcessesSnapshot);
 	}
+	CloseHandle(hProcessesSnapshot);
 	return ModuleBaseAddress;
 }

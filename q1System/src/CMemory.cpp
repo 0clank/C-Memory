@@ -27,7 +27,31 @@
 
 #include "../include/CMemory.h"
 
-void q1::CMemory::test()
+q1::CMemory::CMemory(const std::wstring& wstrProcessName, const wchar_t* szModuleName)
 {
-	std::cout << "test";
+	m_Process = CProcess(wstrProcessName);
+	m_Module = CModule(m_Process.processId(), szModuleName);
+	m_hProcess = OpenProcess(PROCESS_ALL_ACCESS, 0, m_Process.processId());
+}
+
+q1::CMemory::~CMemory()
+{
+	CloseHandle(m_hProcess);
+}
+
+q1::CProcess& q1::CMemory::process()
+{
+	return m_Process;
+}
+
+q1::CModule& q1::CMemory::module()
+{
+	return m_Module;
+}
+
+uintptr_t q1::CMemory::readPointerFromModule(uintptr_t& uintAddr)
+{
+	uintptr_t value;
+	ReadProcessMemory(m_hProcess,reinterpret_cast<LPCVOID>(m_Module.modulePointer() + uintAddr),&value,sizeof(uintptr_t),nullptr);
+	return value;
 }

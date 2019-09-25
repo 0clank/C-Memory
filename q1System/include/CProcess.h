@@ -43,6 +43,11 @@ namespace q1
 	{
 	public:
 		/**
+		 * Default constructor
+		 */
+		CProcess() = default;
+
+		/**
 		 * Creates an instance of CProcess <br>
 		 * And searches the id of the process
 		 * @param processName WideString with a process in it. <br> 

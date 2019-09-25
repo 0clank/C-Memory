@@ -1,4 +1,4 @@
-/*
+﻿/*
  * File: entry.cpp
  * Location: /
  * Author: Qu1oX
@@ -26,6 +26,7 @@
 #include <iostream>
 #include <CProcess.h>
 #include <CModule.h>
+#include <CMemory.h>
 
 #pragma comment(lib, "q1System")
 
@@ -34,8 +35,24 @@
  */
 int main()
 {
-	std::cout << q1::CProcess::findProcessId(L"csgo.exe") << std::endl;
-	std::cout << q1::CModule::findModulePtr(q1::CProcess::findProcessId(L"csgo.exe"), "client_panorama.dll") << std::endl;
+	uintptr_t localplayer = 0x00109B74;
+	uintptr_t health = 0xF8;
+
+	q1::CMemory acClient(L"ac_client.exe", L"ac_client.exe");
+
+	std::cout << "Process " << acClient.process().processId() << std::endl;
+	std::cout << "Module " << acClient.module().moduleName() << std::endl;
+	std::cout << "Pointer " << std::hex << "0x"<< acClient.module().modulePointer() << std::endl;
+
+	std::cout << "-----------------------------" << std::endl;
+
+	uintptr_t localplayerPtr = acClient.readPointerFromModule(localplayer);
+	std::cout << "local: " << localplayerPtr << std::endl;
+
+	int32_t healthValue = acClient.read<int32_t>(localplayerPtr + health);
+	std::cout << "health: " << healthValue << std::endl;
+
+	acClient.write(localplayerPtr + health, 1337);
 
 	return 0;
 }

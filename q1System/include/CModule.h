@@ -43,12 +43,17 @@ namespace q1
 	{
 	public:
 		/**
+		 * Default constructor
+		 */
+		CModule() = default;
+
+		/**
 		 * Creates an instance of CModule
 		 * 
 		 * @param dwProcessId Process id to search in
 		 * @param szModuleName Module to search
 		 */
-		CModule(DWORD dwProcessId, const char* szModuleName);
+		CModule(DWORD dwProcessId, const wchar_t* szModuleName);
 
 		/**
 		 * Getter of m_dwProcessId
@@ -60,7 +65,7 @@ namespace q1
 		 * Getter of m_szModuleName
 		 * @returns The current value of m_szModuleName
 		 */
-		const char* moduleName();
+		const wchar_t* moduleName();
 
 		/**
 		 * Getter of m_uintModulePointer
@@ -83,7 +88,7 @@ namespace q1
 		 * 
 		 * @returns The pointer to the module as uintptr_t
 		 */
-		static uintptr_t findModulePtr(DWORD dwProcessId, const char* szModuleName);
+		static uintptr_t findModulePtr(DWORD dwProcessId, const wchar_t* szModuleName);
 
 	private:
 
@@ -91,7 +96,7 @@ namespace q1
 		DWORD		m_dwProcessId;
 
 		/** module name */
-		const char* m_szModuleName;
+		const wchar_t* m_szModuleName;
 
 		/** module pointer */
 		uintptr_t	m_uintModulePointer;
