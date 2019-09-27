@@ -52,7 +52,7 @@ int main()
 	int32_t healthValue = acClient.read<int32_t>(localplayerPtr + health);
 	std::cout << "health: " << healthValue << std::endl;
 
-	acClient.write(localplayerPtr + health, 1337);
+	acClient.write<int32_t>(localplayerPtr + health, 1337);
 
 	return 0;
 }
