@@ -27,6 +27,7 @@
 #include <CProcess.h>
 #include <CModule.h>
 #include <CMemory.h>
+#include <CProcessor.h>
 
 #pragma comment(lib, "q1System")
 
@@ -35,6 +36,7 @@
  */
 int main()
 {
+	/*
 	uintptr_t localplayer = 0x00109B74;
 	uintptr_t health = 0xF8;
 
@@ -53,6 +55,13 @@ int main()
 	std::cout << "health: " << healthValue << std::endl;
 
 	acClient.write<int32_t>(localplayerPtr + health, 1337);
+	*/
+
+	q1::CProcessor processor;
+
+	std::cout << processor.brand() << std::endl;
+	std::cout << processor.architecture() << std::endl;
+	std::cout << processor.cores() << std::endl; 
 
 	return 0;
 }
