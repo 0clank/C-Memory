@@ -66,6 +66,12 @@ namespace q1
 		std::string& architecture();
 
 		/**
+		 * Getter of m_stType
+		 * @returns The current value of m_stType
+		 */
+		std::string& type();
+
+		/**
 		 * Getter of m_dwCore
 		 * @returns The current value of m_dwCore
 		 */
@@ -91,6 +97,19 @@ namespace q1
 		static std::string getArchitecture();
 
 		/**
+		 * Gets the processor architecture as a WORD <br>
+		 * https://docs.microsoft.com/en-us/windows/win32/api/sysinfoapi/ns-sysinfoapi-system_info
+		 * @returns The processor architecture
+		 */
+		static DWORD getTypeAsDword();
+
+		/**
+		 * Gets the processor architecture type
+		 * @returns The processor architecture type
+		 */
+		static std::string getType();
+
+		/**
 		 * Gets the processor number of cores
 		 * @returns The processor number of cores
 		 */
@@ -106,6 +125,12 @@ namespace q1
 
 		/** Processor Architecture as string */
 		std::string m_stArchitecture;
+
+		/** Processor type as DWORD */
+		DWORD m_dwType;
+
+		/** Processor type as string */
+		std::string m_stType;
 
 		/** Number of cores */
 		DWORD m_dwCore;

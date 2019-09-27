@@ -61,6 +61,7 @@ int main()
 
 	std::cout << processor.brand() << std::endl;
 	std::cout << processor.architecture() << std::endl;
+	std::cout << processor.type() << std::endl;
 	std::cout << processor.cores() << std::endl; 
 
 	return 0;

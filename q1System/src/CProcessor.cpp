@@ -33,6 +33,8 @@ q1::CProcessor::CProcessor()
 	m_stBrand = getBrand();
 	m_wArchitecture = getArchitectureAsWord();
 	m_stArchitecture = getArchitecture();
+	m_dwType = getTypeAsDword();
+	m_stType = getType();
 	m_dwCore = getCores();
 }
 
@@ -48,6 +50,11 @@ std::string& q1::CProcessor::brand()
 std::string& q1::CProcessor::architecture()
 {
 	return m_stArchitecture;
+}
+
+std::string& q1::CProcessor::type()
+{
+	return m_stType;
 }
 
 DWORD& q1::CProcessor::cores()
@@ -110,6 +117,42 @@ std::string q1::CProcessor::getArchitecture()
 		break;
 	default:
 		return "Unknown architecture.";
+		break;
+	}
+}
+
+DWORD q1::CProcessor::getTypeAsDword()
+{
+	SYSTEM_INFO sysInfo;
+	GetSystemInfo(&sysInfo);
+
+	return sysInfo.dwProcessorType;
+}
+
+std::string q1::CProcessor::getType()
+{
+	SYSTEM_INFO sysInfo;
+	GetSystemInfo(&sysInfo);
+
+	switch (sysInfo.dwProcessorType)
+	{
+	case PROCESSOR_INTEL_386:
+		return "Intel 386 processor";
+		break;
+	case PROCESSOR_INTEL_486:
+		return "Intel 486 Processor";
+		break;
+	case PROCESSOR_INTEL_PENTIUM:
+		return "Intel Pentium Processor";
+		break;
+	case PROCESSOR_INTEL_IA64:
+		return "Intel IA64 Processor";
+		break;
+	case PROCESSOR_AMD_X8664:
+		return "AMD X8664 Processor";
+		break;
+	default:
+		return "Unknown";
 		break;
 	}
 }
